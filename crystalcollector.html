@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Crystal-Collector</title>
+	<!-- Added a link to Bootstrap-->
+	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- Added a link to css-->
+    <link rel="stylesheet" type="text/css" href="css/crystalcollector.css">
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+
+    <!--Jquery-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- google font -->
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+   <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4">Crystal Collector</h1>
+      <p class="lead"> You will be given a random number at the start of the game.<br>
+      There are four crystal bellow. By clicking on crystal you will add a specific amount of points to your total score.<br>You win the game by matching your total score to random number, you lose the game if your total score goes above the random number.<br>
+      The value of each crystal is hidden from you until you click on it.<br>
+      Each time when the game starts, the game will change the values of each crystal.</p>
+    </div>
+  </div>
+
+  <div class="row">
+   <div id="compChoice" class="col-md-3">
+   </div>
+      <div class="col-md-1  col-sm-offset-1">
+        <img id="blue" src="./imagesbluecrystal.png">
+      </div>
+         <div id="yellow" class="col-md-1">
+		<img src="./images/yellow.png">
+		</div>
+		<div id="red" class="col-md-1">
+		<img src="./images/redc.png">
+		</div>
+		<div id="green" class="col-md-1">
+		<img src="./images/green.png">
+		</div>
+
+
+		<div id="results"  class="col-d-3  col-sm-offset-1">
+		 <p id="wins"></p>
+		 <p id="losses"></p>
+
+		 <button class="btn btn-danger" id="reset" >Reset</button>
+
+	</div>
+ </div>
+
+ <script type="text/javascript">
+
+
+</body>
+</html>
