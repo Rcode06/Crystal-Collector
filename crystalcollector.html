@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Crystal-Collector</title>
-	<!-- Added a link to Bootstrap-->
+	<title>Crystal Collector</title>
+     <!-- Added a link to Bootstrap-->
 	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
     <!-- Added a link to css-->
-    <link rel="stylesheet" type="text/css" href="css/crystalcollector.css">
+    <link rel="stylesheet" type="text/css" href="css/crystal.collector.css">
     <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
 
     <!--Jquery-->
@@ -16,25 +16,31 @@
     <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
 </head>
 <body>
-
 <div class="container">
-   <div class="jumbotron jumbotron-fluid">
-    <div class="container">
-      <h1 class="display-4">Crystal Collector</h1>
-      <p class="lead"> You will be given a random number at the start of the game.<br>
-      There are four crystal bellow. By clicking on crystal you will add a specific amount of points to your total score.<br>You win the game by matching your total score to random number, you lose the game if your total score goes above the random number.<br>
-      The value of each crystal is hidden from you until you click on it.<br>
-      Each time when the game starts, the game will change the values of each crystal.</p>
-    </div>
-  </div>
+	<div class="jumbotron jumbotron-fluid">
+	  <div class="container">
+	    <h1 class="display-4">Crystal Collector</h1>
+	    <p class="lead">You will be given a random number at the start of the game.<br>
+	    There are four crystals bellow. By clicking on crystal you will add a specific amount of points to your total score.<br>You win the game by matching your total score to random number, you lose the game if your total score goes above the random number.<br>
+	    The value of each crystal is hidden from you until you click on it.<br>
+	    Each time when the game starts, the game will change the values of each crystal.</p>
+	  </div>
+	</div>
 
-  <div class="row">
-   <div id="compChoice" class="col-md-3">
-   </div>
-      <div class="col-md-1  col-sm-offset-1">
-        <img id="blue" src="./imagesbluecrystal.png">
-      </div>
-         <div id="yellow" class="col-md-1">
+	<div class="row">
+		<!-- <div id="crystaladds" class="col-md-2 col-md-offset-2">
+		</div> -->
+		<!-- <div id="crystallosses" class="col-md-2" >
+		</div> -->
+	</div>
+
+	<div class="row">
+	<div id="compChoice" class="col-md-3 ">
+	</div>
+		<div class="col-md-1 col-sm-offset-1">
+		<img id="blue" src="./images/bluecrystal.png">
+		</div>
+		<div id="yellow" class="col-md-1">
 		<img src="./images/yellow.png">
 		</div>
 		<div id="red" class="col-md-1">
@@ -43,19 +49,108 @@
 		<div id="green" class="col-md-1">
 		<img src="./images/green.png">
 		</div>
-
-
-		<div id="results"  class="col-d-3  col-sm-offset-1">
+		
+		<div id="results" class="col-md-3   col-sm-offset-1 " >
 		 <p id="wins"></p>
 		 <p id="losses"></p>
-
-		 <button class="btn btn-danger" id="reset" >Reset</button>
-
+		  <button class="btn btn-danger" id="reset"  >Reset</button>
+		 
+		</div>
 	</div>
- </div>
 
- <script type="text/javascript">
+	<p class="totalscore">Your Total Score is</p>
+
+   
+	<div class="score">
+	 <p id = "totaladdition"></p>
+	</div>
+</div>
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+
+//global variables
+ var wins = 0;
+ var losses = 0;
+ var totaladdition = 0;
+ var compChoice = Math.floor(Math.random() * 100) + 10;
+ var red = Math.floor( Math.random() * 12 ) + 1;
+ var blue = Math.floor( Math.random() * 12 ) + 1;
+ var green = Math.floor( Math.random() * 12 ) + 1;
+ var yellow = Math.floor( Math.random() * 12 ) + 1;
+	
+	// $("#totaladdition").text(totaladdition);
+	$("#compChoice").text(compChoice);
+
+	$("#wins").append("<p> WINS " + " : " + wins + "</p>");
+	$("#losses").append("<p> LOSSES" + " : " + losses + "</p>");
 
 
+    $("#reset").on('click', function(){ 
+        reset();
+      })  
+	var reset = function(){
+		totaladdition = 0;
+		$("#totaladdition").text(totaladdition);
+		compChoice = Math.floor(Math.random() * 100) + 10;
+		$("#compChoice").text(compChoice);
+ 		red = Math.floor( Math.random() * 12 ) + 1;
+		blue = Math.floor( Math.random() * 12 ) + 1;
+		green = Math.floor( Math.random() * 12 ) + 1;
+		yellow = Math.floor( Math.random() * 12 ) + 1;
+	}
+
+$("#blue").on("click", function(){
+	totaladdition = totaladdition + blue;
+	$("#totaladdition").text(totaladdition);
+	
+	result();
+	
+})
+
+$("#red").on("click", function(){
+	totaladdition = totaladdition + red;
+	$("#totaladdition").text(totaladdition);
+	
+	result();
+})
+
+$("#green").on("click", function(){
+	totaladdition = totaladdition + green;
+	$("#totaladdition").text(totaladdition);
+	
+	result();
+})
+
+$("#yellow").on("click", function(){
+	totaladdition = totaladdition + yellow;
+	$("#totaladdition").text(totaladdition);
+	
+	result();
+})
+
+	
+
+var result = function(){
+	if(totaladdition === compChoice){
+		wins ++;
+		$("#wins").text("WINS" + " : " + wins);
+		alert("You are a winner");
+		reset();
+	}
+
+	else if(totaladdition > compChoice){
+		losses ++;
+		$("#losses").text("LOSSES" + ":" + losses);
+		alert("Not your game");
+		reset();
+	}
+}
+});
+
+
+
+</script>
 </body>
 </html>
